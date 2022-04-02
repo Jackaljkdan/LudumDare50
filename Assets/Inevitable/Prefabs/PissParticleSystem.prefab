@@ -4818,4 +4818,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  lerp: 0.04
+  lerp: 0.1

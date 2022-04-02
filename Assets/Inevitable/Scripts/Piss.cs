@@ -39,7 +39,7 @@ namespace Inevitable
 
         #endregion
 
-        private List<ContactPoint> contactsList = new List<ContactPoint>(10);
+        private List<ContactPoint> contactsList = new List<ContactPoint>(32);
 
         //private bool finishedToBottom = false;
 
@@ -72,6 +72,42 @@ namespace Inevitable
             //finishedToBottom = true;
         }
 
+        private void OnCollision(Collider collider, Collision collision)
+        {
+            contactsList.Clear();
+
+            for (int i = 0; i < collision.contactCount; i++)
+                contactsList.Add(collision.GetContact(i));
+        }
+
+        private void Update()
+        {
+            contactsList.Sort((cp1, cp2) =>
+                cp1.point.y < cp2.point.y
+                    ? 1
+                    : cp1.point.y == cp2.point.y
+                        ? 0
+                        : -1
+            );
+
+            //Debug.Log($"contacts {string.Join(" ", contactsList.Select(cp => cp.point.y.ToString("0.0")))}");
+
+            for (int i = 0; i < particles.Count; i++)
+            {
+                LerpToTarget particle = particles[i];
+
+                if (i >= contactsList.Count)
+                {
+                    particle.gameObject.SetActive(false);
+                }
+                else
+                {
+                    particle.gameObject.SetActive(true);
+                    particle.target = contactsList[i].point;
+                }
+            }
+        }
+
         private void LateUpdate()
         {
             if (follow == null)
@@ -97,40 +133,7 @@ namespace Inevitable
                     rotX = 0;
             }
 
-            body.localScale = Vector3.Lerp(body.localScale, new Vector3(1, 1, Mathf.Lerp(4.7f, 0.5f, rotX/45)), lerp);
-        }
-
-        private void OnCollision(Collider collider, Collision collision)
-        {
-            contactsList.Clear();
-
-            for (int i = 0; i < collision.contactCount; i++)
-                contactsList.Add(collision.GetContact(i));
-
-            contactsList.Sort((cp1, cp2) => 
-                cp1.point.y < cp2.point.y
-                    ? 1
-                    : cp1.point.y == cp2.point.y
-                        ? 0
-                        : -1
-            );
-
-            //Debug.Log($"contacts {string.Join(" ", contactsList.Select(cp => cp.point.y.ToString("0.0")))}");
-
-            for (int i = 0; i < particles.Count; i++)
-            {
-                LerpToTarget particle = particles[i];
-
-                if (i >= contactsList.Count)
-                {
-                    particle.gameObject.SetActive(false);
-                }
-                else
-                {
-                    particle.gameObject.SetActive(true);
-                    particle.target = contactsList[i].point;
-                }
-            }
+            body.localScale = Vector3.Lerp(body.localScale, new Vector3(1, 1, Mathf.Lerp(4.7f, 0.5f, rotX / 45)), lerp);
         }
     }
 }
