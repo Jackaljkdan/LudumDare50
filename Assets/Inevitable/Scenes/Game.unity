@@ -5766,6 +5766,7 @@ MonoBehaviour:
   follow: {fileID: 706859868}
   followOffset: {x: 0, y: -2, z: 0}
   lerp: 0.05
+  flameIntensityBumpPerSecond: 2
   particles:
   - {fileID: 1479706061909290680}
   - {fileID: 1845591543}
@@ -11192,7 +11193,7 @@ Transform:
   m_GameObject: {fileID: 1099093594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 1}
   m_Children:
   - {fileID: 1983825164}
   - {fileID: 143063317}

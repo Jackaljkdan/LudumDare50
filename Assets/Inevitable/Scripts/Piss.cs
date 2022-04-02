@@ -29,6 +29,8 @@ namespace Inevitable
 
         public float lerp = 0.1f;
 
+        public float flameIntensityBumpPerSecond = 0.3f;
+
         [SerializeField]
         private List<LerpToTarget> particles = null;
 
@@ -78,6 +80,9 @@ namespace Inevitable
 
             for (int i = 0; i < collision.contactCount; i++)
                 contactsList.Add(collision.GetContact(i));
+
+            if (collision.gameObject.TryGetComponent(out FlammableCollider flammable))
+                flammable.target.normalizedBurningIntensity -= flameIntensityBumpPerSecond * Time.deltaTime; 
         }
 
         private void Update()
@@ -133,7 +138,9 @@ namespace Inevitable
                     rotX = 0;
             }
 
-            body.localScale = Vector3.Lerp(body.localScale, new Vector3(1, 1, Mathf.Lerp(4.7f, 0.5f, rotX / 45)), lerp);
+            var scale = body.localScale;
+            scale.z = Mathf.Lerp(4.7f, 0.5f, rotX / 45);
+            body.localScale = Vector3.Lerp(body.localScale, scale, lerp);
         }
     }
 }
