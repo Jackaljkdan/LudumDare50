@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 7169761184552098935}
   - component: {fileID: 8957614771691023897}
   - component: {fileID: 3611709953384570671}
+  - component: {fileID: 5400126348116674640}
   m_Layer: 0
   m_Name: Wall2x
   m_TagString: Untagged
@@ -397,6 +398,22 @@ MonoBehaviour:
   flammable: {fileID: 8957614771691023897}
   target: {fileID: 7169761184409949931}
   charredColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &5400126348116674640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169761184552098937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26372989b53477e409877f6b4fd93cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensityThreshold: 0.5
+  _distanceThreshold: 2
+  secondsBetweenSpreads: 2
+  flammable: {fileID: 8957614771691023897}
 --- !u!1001 &7169761184035154299
 PrefabInstance:
   m_ObjectHideFlags: 0

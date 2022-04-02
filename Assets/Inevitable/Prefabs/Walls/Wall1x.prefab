@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7169761184409949928, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7169761184552098934, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -62,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 7169761184552098937, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
       propertyPath: m_Name
       value: Wall1x
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809293942399687977, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
