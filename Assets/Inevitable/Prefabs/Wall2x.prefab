@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7169761184552098934}
   - component: {fileID: 7169761184552098935}
+  - component: {fileID: 8957614771691023897}
   m_Layer: 0
   m_Name: Wall2x
   m_TagString: Untagged
@@ -142,6 +143,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2421991042644848817}
   matchOnStart: 1
+--- !u!114 &8957614771691023897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169761184552098937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d77bc4bfb3ff940a1a7214fc54d420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 2421991042644848817}
+  burnSeconds: 5
+  normalizedBurningIntensity: 0
 --- !u!1001 &7169761184035154299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,6 +172,10 @@ PrefabInstance:
     - target: {fileID: 4763893380974025013, guid: 9778aa4c408ba4c44828e7f93af337b7, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763893380974025162, guid: 9778aa4c408ba4c44828e7f93af337b7, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763893380974025162, guid: 9778aa4c408ba4c44828e7f93af337b7, type: 3}
       propertyPath: ShapeModule.m_Scale.x
