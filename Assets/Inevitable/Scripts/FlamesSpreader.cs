@@ -57,6 +57,16 @@ namespace Inevitable
 
         private List<Flammable> cachedSibilings;
 
+        private void Start()
+        {
+            flammable.onBurnDown.AddListener(OnBurnDown);
+        }
+
+        private void OnBurnDown()
+        {
+            enabled = false;
+        }
+
         private void LateUpdate()
         {
             if (!flammable.IsBurning)
@@ -99,7 +109,7 @@ namespace Inevitable
 
             foreach (var sibiling in cachedSibilings)
             {
-                if (sibiling.IsBurning)
+                if (!sibiling.CanStartBurning)
                     continue;
 
                 Debug.Log("spreading to " + sibiling.name);

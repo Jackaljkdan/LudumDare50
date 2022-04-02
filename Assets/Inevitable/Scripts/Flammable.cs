@@ -23,7 +23,11 @@ namespace Inevitable
 
         #endregion
 
-        public bool IsBurning => normalizedBurningIntensity > 0;
+        public bool IsBurning => particles.isPlaying;
+
+        public bool IsBurnedDown { get; private set; }
+
+        public bool CanStartBurning => !IsBurnedDown && !IsBurning;
 
         private float maxEmissionRate;
 
@@ -37,7 +41,7 @@ namespace Inevitable
         [ContextMenu("Start burning")]
         public void StartBurning()
         {
-            if (particles.isPlaying)
+            if (particles.isPlaying && !IsBurnedDown)
                 return;
 
             emission = particles.emission;
@@ -80,7 +84,11 @@ namespace Inevitable
             emission.rateOverTime = normalizedBurningIntensity * maxEmissionRate;
 
             if (normalizedBurningIntensity == 1)
+            {
+                IsBurnedDown = true;
+                StopBurning();
                 onBurnDown.Invoke();
+            }
         }
     }
 }

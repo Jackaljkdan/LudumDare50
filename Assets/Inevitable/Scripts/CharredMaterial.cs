@@ -32,11 +32,17 @@ namespace Inevitable
         private void Start()
         {
             flammable.onStartBurning.AddListener(OnStartBurning);
+            flammable.onBurnDown.AddListener(OnBurnDown);
         }
 
         private void OnStartBurning()
         {
             initialColor = target.material.color;
+        }
+
+        private void OnBurnDown()
+        {
+            enabled = false;
         }
 
         private void LateUpdate()
