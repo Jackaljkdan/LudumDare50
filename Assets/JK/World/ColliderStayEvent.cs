@@ -9,7 +9,6 @@ using Zenject;
 namespace JK.World
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Collider))]
     public class ColliderStayEvent : MonoBehaviour
     {
         #region Inspector

@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
+    - target: {fileID: 7651076687509901570, guid: 965d84877c1d54c468223577085235c2, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965d84877c1d54c468223577085235c2, type: 3}
 --- !u!4 &7369865128667433742 stripped

@@ -21,6 +21,8 @@ namespace Inevitable
 
         public AnimationCurve curveToBottom;
 
+        public Transform body;
+
         public Transform follow;
 
         public Vector3 followOffset = Vector3.zero;
@@ -28,7 +30,7 @@ namespace Inevitable
         public float lerp = 0.1f;
 
         [SerializeField]
-        private List<GameObject> particles = null;
+        private List<LerpToTarget> particles = null;
 
         private void Reset()
         {
@@ -39,10 +41,16 @@ namespace Inevitable
 
         private List<ContactPoint> contactsList = new List<ContactPoint>(10);
 
-        private bool finishedToBottom = false;
+        //private bool finishedToBottom = false;
 
         //[Inject]
         //private RotationActuatorInputBehaviour rotationInput = null;
+
+        private void Start()
+        {
+            if (body.TryGetComponent(out ColliderStayEvent stay))
+                stay.onCollisionStay.AddListener(OnCollision);
+        }
 
         private void OnEnable()
         {
@@ -51,7 +59,7 @@ namespace Inevitable
 
         private IEnumerator PeeToBottomCoroutine()
         {
-            finishedToBottom = false;
+            //finishedToBottom = false;
             float elapsed = 0;
 
             while (elapsed < secondsToBottom)
@@ -61,7 +69,7 @@ namespace Inevitable
                 yield return null;
             }
 
-            finishedToBottom = true;
+            //finishedToBottom = true;
         }
 
         private void LateUpdate()
@@ -69,15 +77,13 @@ namespace Inevitable
             if (follow == null)
                 return;
 
-            Transform tr = transform;
-
-            tr.position = Vector3.Lerp(tr.position, follow.position + tr.TransformDirection(followOffset), lerp);
+            body.position = Vector3.Lerp(body.position, follow.position + body.TransformDirection(followOffset), lerp);
 
             var followEuler = follow.eulerAngles;
 
-            var euler = tr.eulerAngles;
+            var euler = body.eulerAngles;
             euler.y = Mathf.LerpAngle(euler.y, followEuler.y, lerp);
-            tr.eulerAngles = euler;
+            body.eulerAngles = euler;
 
             // x rot 0 => scale 4.7
             // x rot 45 => scale 1
@@ -91,10 +97,10 @@ namespace Inevitable
                     rotX = 0;
             }
 
-            tr.localScale = Vector3.Lerp(tr.localScale, new Vector3(1, 1, Mathf.Lerp(4.7f, 0.5f, rotX/45)), lerp);
+            body.localScale = Vector3.Lerp(body.localScale, new Vector3(1, 1, Mathf.Lerp(4.7f, 0.5f, rotX/45)), lerp);
         }
 
-        private void OnCollisionStay(Collision collision)
+        private void OnCollision(Collider collider, Collision collision)
         {
             contactsList.Clear();
 
@@ -113,14 +119,16 @@ namespace Inevitable
 
             for (int i = 0; i < particles.Count; i++)
             {
+                LerpToTarget particle = particles[i];
+
                 if (i >= contactsList.Count)
                 {
-                    particles[i].gameObject.SetActive(false);
+                    particle.gameObject.SetActive(false);
                 }
                 else
                 {
-                    particles[i].gameObject.SetActive(true);
-                    particles[i].transform.position = contactsList[i].point;
+                    particle.gameObject.SetActive(true);
+                    particle.target = contactsList[i].point;
                 }
             }
         }
