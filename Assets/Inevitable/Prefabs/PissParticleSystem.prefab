@@ -4818,4 +4818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  lerp: 0.1
+  maxLerp: 0.8
+  minLerp: 0.1
+  sqrMaxDistance: 25

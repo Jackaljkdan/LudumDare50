@@ -13,13 +13,21 @@ namespace JK.World
 
         public Vector3 target;
 
-        public float lerp = 0.1f;
+        public float maxLerp = 0.6f;
+        public float minLerp = 0.05f;
+
+        public float sqrMaxDistance = 25;
 
         #endregion
 
-        private void Update()
+        private void LateUpdate()
         {
-            transform.position = Vector3.Lerp(transform.position, target, lerp);
+            Transform tr = transform;
+
+            float sqrDistance = (tr.position - target).sqrMagnitude;
+            float lerp = Mathf.Lerp(minLerp, maxLerp, sqrDistance / sqrMaxDistance);
+
+            tr.position = Vector3.Lerp(tr.position, target, lerp);
         }
     }
 }
