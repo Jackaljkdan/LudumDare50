@@ -1,0 +1,29 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        #region Inspector fields
+
+        #NOTRIM#
+
+        #endregion
+        
+        public class Factory : PlaceholderFactory<InjectedType, #SCRIPTNAME#> { }
+
+        [Inject]
+        private void Inject(InjectedType arg)
+        {
+            #NOTRIM#
+        }
+    }
+    
+    [Serializable]
+    public class UnityEvent#SCRIPTNAME# : UnityEvent<#SCRIPTNAME#> { }
+}

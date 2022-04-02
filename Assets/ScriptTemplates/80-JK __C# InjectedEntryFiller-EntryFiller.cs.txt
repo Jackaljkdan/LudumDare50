@@ -1,0 +1,34 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        #region Inspector fields
+
+        #NOTRIM#
+
+        #endregion
+        
+        [Inject]
+        private void Inject([InjectOptional] InjectedType x, #SCRIPTNAME_Fil#.Factory factory, Transform parent)
+        {
+            if (x == null)
+                return;
+
+            //if (Const.IsEditor)
+            //    MZ.Utils.TransformUtils.DestroyAndDetachChildren(parent);
+
+            //foreach (var y in x)
+            //    factory.Create(y);
+        }
+    }
+    
+    [Serializable]
+    public class UnityEvent#SCRIPTNAME# : UnityEvent<#SCRIPTNAME#> { }
+}

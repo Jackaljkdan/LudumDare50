@@ -1,0 +1,33 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace #NAMESPACE#
+{
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "#SCRIPTPATH#/#SCRIPTNAME#")]
+    public class #SCRIPTNAME# : ScriptableObject
+    {
+        #region Inspector fields
+
+        #NOTRIM#
+
+        #endregion
+
+        private void Awake()
+        {
+            #NOTRIM#
+        }
+
+        private void OnEnable()
+        {
+            #NOTRIM#
+        }
+
+        private void OnDisable()
+        {
+            #NOTRIM#
+        }
+    }
+}

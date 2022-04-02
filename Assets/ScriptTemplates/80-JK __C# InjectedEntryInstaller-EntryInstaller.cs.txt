@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : MonoInstaller
+    {
+        #region Inspector fields
+        
+        #NOTRIM#
+        
+        #endregion
+        
+        [Inject]
+        private InjectedType data = null;
+
+        public override void InstallBindings()
+        {
+            Container.Bind<#SCRIPTNAME_I#>().FromComponentOnRoot();
+            Container.BindInstance(data);
+        }
+    }
+}

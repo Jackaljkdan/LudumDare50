@@ -1,0 +1,32 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using Zenject;
+
+namespace #NAMESPACE#
+{
+    public class #SCRIPTNAME# : MonoInstaller
+    {
+        #region Inspector fields
+
+        [SerializeField]
+        private Transform parent = null;
+
+        [SerializeField]
+        private #SCRIPTNAME_FI# prefab = null;
+
+        #endregion
+
+        public override void InstallBindings()
+        {
+            Container.BindFactory<InjectedType, #SCRIPTNAME_FI#, #SCRIPTNAME_FI#.Factory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab<#SCRIPTNAME_FI#Installer>(prefab)
+                .UnderTransform(parent);
+
+            Container.BindInstance(parent).WhenInjectedInto<#SCRIPTNAME_FI#Filler>();
+        }
+    }
+}
