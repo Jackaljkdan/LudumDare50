@@ -19,6 +19,10 @@ namespace Horror.UI
         [SerializeField]
         private float fadeOutSeconds = 0.6f;
 
+        [SerializeField]
+        private bool mouseMovementTriggersFade = true;
+
+
         #endregion
 
         private void Start()
@@ -29,13 +33,18 @@ namespace Horror.UI
         private void Update()
         {
             if (UnityEngine.Input.anyKeyDown
-                || UnityEngine.Input.GetAxis("Mouse X") != 0
-                || UnityEngine.Input.GetAxis("Mouse Y") != 0
+                || (mouseMovementTriggersFade && MouseMoved())
             )
             {
                 StartCoroutine(FadeCoroutine());
                 enabled = false;
             }
+        }
+
+        private bool MouseMoved()
+        {
+            return UnityEngine.Input.GetAxis("Mouse X") != 0
+                || UnityEngine.Input.GetAxis("Mouse Y") != 0;
         }
 
         private IEnumerator FadeCoroutine()
