@@ -41,7 +41,7 @@ namespace Inevitable
         [ContextMenu("Start burning")]
         public void StartBurning()
         {
-            if (particles.isPlaying && !IsBurnedDown)
+            if (particles.isPlaying || IsBurnedDown)
                 return;
 
             emission = particles.emission;

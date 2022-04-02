@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739679235593352015, guid: 965d84877c1d54c468223577085235c2, type: 3}
       propertyPath: m_Name
-      value: Building
+      value: House
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965d84877c1d54c468223577085235c2, type: 3}
@@ -735,6 +735,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7369865128667433742}
     m_Modifications:
+    - target: {fileID: 2713991006310940990, guid: b1448b1e33b22d04399de8ee6d887855, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8443361684284537237, guid: b1448b1e33b22d04399de8ee6d887855, type: 3}
       propertyPath: m_Name
       value: Rooftop (1)
@@ -816,6 +820,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7369865128667433742}
     m_Modifications:
+    - target: {fileID: 2713991006310940990, guid: b1448b1e33b22d04399de8ee6d887855, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8443361684284537237, guid: b1448b1e33b22d04399de8ee6d887855, type: 3}
       propertyPath: m_Name
       value: Rooftop
