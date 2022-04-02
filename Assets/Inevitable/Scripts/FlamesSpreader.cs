@@ -112,7 +112,7 @@ namespace Inevitable
                 if (!sibiling.CanStartBurning)
                     continue;
 
-                Debug.Log("spreading to " + sibiling.name);
+                //Debug.Log("spreading to " + sibiling.name);
 
                 sibiling.StartBurning();
                 break;

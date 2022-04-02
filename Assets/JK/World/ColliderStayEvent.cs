@@ -10,12 +10,11 @@ namespace JK.World
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Collider))]
-    public class ColliderUnfrequentEvents : MonoBehaviour
+    public class ColliderStayEvent : MonoBehaviour
     {
         #region Inspector
 
-        public UnityEventCollision onCollisionEnter = new UnityEventCollision();
-        public UnityEventCollision onCollisionExit = new UnityEventCollision();
+        public UnityEventCollision onCollisionStay = new UnityEventCollision();
 
         #endregion
 
@@ -27,14 +26,9 @@ namespace JK.World
             Collider = GetComponent<Collider>();
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionStay(Collision collision)
         {
-            onCollisionEnter.Invoke(Collider, collision);
-        }
-
-        private void OnCollisionExit(Collision collision)
-        {
-            onCollisionExit.Invoke(Collider, collision);
+            onCollisionStay.Invoke(Collider, collision);
         }
     }
 }
