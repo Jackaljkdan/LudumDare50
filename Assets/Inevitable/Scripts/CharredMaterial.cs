@@ -1,0 +1,53 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace Inevitable
+{
+    [DisallowMultipleComponent]
+    public class CharredMaterial : MonoBehaviour
+    {
+        #region Inspector
+
+        public Flammable flammable;
+
+        public Renderer target;
+
+        public Color charredColor = Color.black;
+
+        private void Reset()
+        {
+            flammable = GetComponentInParent<Flammable>();
+            target = GetComponentInChildren<Renderer>();
+        }
+
+        #endregion
+
+        private Color initialColor;
+
+        private float highestIntensity = 0;
+
+        private void Start()
+        {
+            flammable.onStartBurning.AddListener(OnStartBurning);
+        }
+
+        private void OnStartBurning()
+        {
+            initialColor = target.material.color;
+        }
+
+        private void LateUpdate()
+        {
+            if (!flammable.IsBurning)
+                return;
+
+            if (flammable.normalizedBurningIntensity > highestIntensity)
+                highestIntensity = flammable.normalizedBurningIntensity;
+
+            target.material.color = Color.Lerp(initialColor, charredColor, highestIntensity);
+        }
+    }
+}

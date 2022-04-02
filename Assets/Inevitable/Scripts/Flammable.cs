@@ -15,12 +15,15 @@ namespace Inevitable
 
         public float burnSeconds = 5;
 
+        public UnityEvent onStartBurning = new UnityEvent();
         public UnityEvent onBurnDown = new UnityEvent();
 
         [Header("Runtime")]
         public float normalizedBurningIntensity = 0;
 
         #endregion
+
+        public bool IsBurning => normalizedBurningIntensity > 0;
 
         private float maxEmissionRate;
 
@@ -42,6 +45,8 @@ namespace Inevitable
             normalizedBurningIntensity = Mathf.Epsilon;
 
             particles.Play();
+
+            onStartBurning.Invoke();
         }
 
         [ContextMenu("Stop burning")]
