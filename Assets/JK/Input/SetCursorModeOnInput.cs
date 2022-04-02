@@ -15,6 +15,8 @@ namespace JK.Input
 
         public DestroyMode destroyMode = DestroyMode.DestroyGameObject;
 
+        public UnityEvent onInput = new UnityEvent();
+
         #endregion
 
         [Serializable]
@@ -40,6 +42,8 @@ namespace JK.Input
                         Destroy(gameObject);
                         break;
                 }
+
+                onInput?.Invoke();
             }
         }
     }
