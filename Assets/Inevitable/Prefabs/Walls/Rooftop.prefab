@@ -7,6 +7,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2421991042644848816, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848816, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848816, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: aed8c47425ab91f4eb06ce6fe47c3e4e, type: 3}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.m_Rotation.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.placementMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.m_MeshRenderer
+      value: 
+      objectReference: {fileID: 8443361684408726279}
+    - target: {fileID: 2421991042644848817, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7169761184409949928, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -261,10 +305,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7169761184409949930, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+    - {fileID: 7169761184552098935, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
 --- !u!1 &8443361684408726272 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7169761184409949932, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
+  m_PrefabInstance: {fileID: 1633895689227396588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8443361684408726279 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7169761184409949931, guid: ac60f5cbeba5d91418d0425433a8b22a, type: 3}
   m_PrefabInstance: {fileID: 1633895689227396588}
   m_PrefabAsset: {fileID: 0}
 --- !u!64 &2713991006310940990
