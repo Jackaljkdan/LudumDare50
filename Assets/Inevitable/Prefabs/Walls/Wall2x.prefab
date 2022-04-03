@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensityThreshold: 0.5
   _distanceThreshold: 2
-  secondsBetweenSpreads: 2
+  secondsBetweenSpreads: 10
   flammable: {fileID: 8957614771691023897}
 --- !u!1001 &7169761184035154299
 PrefabInstance:
