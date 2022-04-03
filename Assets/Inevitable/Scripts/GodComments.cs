@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Inevitable.UI;
 using JK.Utils;
 using System;
@@ -28,6 +29,9 @@ namespace Inevitable
 
         [Inject(Id = "sounds")]
         private AudioSource sounds = null;
+
+        [Inject(Id = "music")]
+        private AudioSource music = null;
 
         [Inject(Id = "targets")]
         private List<Building> buildings = null;
@@ -99,6 +103,8 @@ namespace Inevitable
 
             lastCommentTime = Time.time + clip.length;
 
+            music.DOFade(0.25f, 0.5f);
+
             sounds.PlayOneShot(clip);
 
             IsCommenting = true;
@@ -107,6 +113,8 @@ namespace Inevitable
 
         private void StopCommenting()
         {
+            music.DOFade(1, 0.5f);
+
             IsCommenting = false;
         }
     }
