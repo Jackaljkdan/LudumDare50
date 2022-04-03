@@ -1,12 +1,11 @@
 using DG.Tweening;
-using JK.Actuators.Input;
 using JK.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Inevitable
@@ -29,6 +28,14 @@ namespace Inevitable
         public Vector3 followOffset = Vector3.zero;
 
         public float lerp = 0.1f;
+
+        public float thirstMultiplier = 1;
+
+        public float thirstThreshold = 0.3f;
+
+        public float thirstSeconds = 10;
+
+        public float inputThirstSecondsBump = 0.2f;
 
         public float flameIntensityBumpPerSecond = 0.3f;
 
@@ -55,6 +62,9 @@ namespace Inevitable
 
         [Inject(Id = "sounds")]
         private AudioSource sounds = null;
+
+        [InjectOptional(Id = "piss")]
+        private Slider pissSlider = null;
 
         private void Start()
         {
@@ -124,6 +134,9 @@ namespace Inevitable
                     particle.target = contactsList[i].point;
                 }
             }
+
+            if (Input.GetMouseButtonDown(0))
+                thirstMultiplier = Mathf.Min(1, thirstMultiplier + inputThirstSecondsBump);
         }
 
         private void LateUpdate()
@@ -151,8 +164,17 @@ namespace Inevitable
                     rotX = 0;
             }
 
+            float actualThirstMultiplier = 1;
+            thirstMultiplier -= Time.deltaTime / thirstSeconds;
+
+            if (pissSlider != null)
+                pissSlider.value = thirstMultiplier;
+
+            if (thirstMultiplier < thirstThreshold)
+                actualThirstMultiplier = thirstMultiplier / thirstThreshold;
+
             var scale = body.localScale;
-            scale.z = Mathf.Lerp(4.7f, 0.5f, rotX / 45);
+            scale.z = Mathf.Lerp(0.5f, 4.7f, actualThirstMultiplier * (45 - rotX) / 45);
             body.localScale = Vector3.Lerp(body.localScale, scale, lerp);
         }
 
