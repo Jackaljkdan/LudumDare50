@@ -46,7 +46,7 @@ namespace Inevitable
             if (godComments.IsCommenting)
                 return;
 
-            if (Time.time > lastSoundTime)
+            if (Time.time - lastSoundTime > secondsBetweenSounds)
                 PlaySound();
         }
 
