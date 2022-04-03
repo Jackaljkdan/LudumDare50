@@ -34,9 +34,14 @@ namespace Inevitable
             if (burntCount == flammables.Count)
             {
                 Debug.Log(name + " burnt down");
-                gameObject.SetActive(false);
+                Invoke(nameof(Deactivate), Flammable.DestroyDelaySeconds);
                 onBurntDown.Invoke();
             }
+        }
+
+        private void Deactivate()
+        {
+            gameObject.SetActive(false);
         }
 
         public IEnumerable<Flammable> EnumerateFlammables()

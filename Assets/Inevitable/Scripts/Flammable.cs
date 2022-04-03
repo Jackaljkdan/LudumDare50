@@ -16,7 +16,6 @@ namespace Inevitable
 
         public float burnSeconds = 5;
 
-
         public UnityEvent onStartBurning = new UnityEvent();
         public UnityEvent onBurnDown = new UnityEvent();
 
@@ -27,6 +26,8 @@ namespace Inevitable
         public Transform model = null;
 
         #endregion
+
+        public const float DestroyDelaySeconds = 4;
 
         public bool IsBurning => particles.isPlaying;
 
@@ -75,7 +76,7 @@ namespace Inevitable
             model.DOScale(0, 0.5f).onComplete += () =>
             {
                 particles.Stop();
-                Invoke(nameof(Destroy), 4);
+                Invoke(nameof(Destroy), DestroyDelaySeconds);
             };
 
             onBurnDown.Invoke();
