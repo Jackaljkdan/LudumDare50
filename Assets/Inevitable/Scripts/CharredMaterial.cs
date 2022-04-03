@@ -27,7 +27,7 @@ namespace Inevitable
 
         private Color initialColor;
 
-        private float highestIntensity = 0;
+        //private float highestIntensity = 0;
 
         private void Start()
         {
@@ -47,13 +47,15 @@ namespace Inevitable
 
         private void LateUpdate()
         {
-            if (!flammable.IsBurning)
+            if (!flammable.IsBurning && !flammable.IsBurntDown)
                 return;
 
-            if (flammable.normalizedBurningIntensity > highestIntensity)
-                highestIntensity = flammable.normalizedBurningIntensity;
+            //if (flammable.normalizedBurningIntensity > highestIntensity)
+            //    highestIntensity = flammable.normalizedBurningIntensity;
 
-            target.material.color = Color.Lerp(initialColor, charredColor, highestIntensity);
+            //target.material.color = Color.Lerp(initialColor, charredColor, highestIntensity);
+
+            target.material.color = Color.Lerp(initialColor, charredColor, flammable.normalizedBurningIntensity);
         }
     }
 }
