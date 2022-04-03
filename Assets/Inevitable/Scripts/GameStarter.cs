@@ -16,20 +16,22 @@ namespace Inevitable
     {
         #region Inspector
 
-        public Piss piss;
-
         public GameObject sky;
 
         public FireballSpawner introSpawner;
         public FireballSpawner scenicSpawner;
-
-        public Timer timer;
 
         public AudioClip introClip;
 
         public bool skipInEditor = true;
 
         #endregion
+
+        [Inject]
+        private Piss piss = null;
+
+        [Inject]
+        private Timer timer = null;
 
         [Inject(Id = "music")]
         private AudioSource music = null;

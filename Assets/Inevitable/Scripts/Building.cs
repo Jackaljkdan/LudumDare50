@@ -11,7 +11,7 @@ namespace Inevitable
     {
         #region Inspector
 
-
+        public UnityEvent onBurntDown = new UnityEvent();
 
         #endregion
 
@@ -35,6 +35,7 @@ namespace Inevitable
             {
                 Debug.Log(name + " burnt down");
                 gameObject.SetActive(false);
+                onBurntDown.Invoke();
             }
         }
 

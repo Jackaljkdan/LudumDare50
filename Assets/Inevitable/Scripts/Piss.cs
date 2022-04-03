@@ -155,5 +155,14 @@ namespace Inevitable
             scale.z = Mathf.Lerp(4.7f, 0.5f, rotX / 45);
             body.localScale = Vector3.Lerp(body.localScale, scale, lerp);
         }
+
+        public void EndFlow()
+        {
+            enabled = false;
+            body.DOScaleZ(0, 1);
+
+            foreach (var particle in particles)
+                particle.GetComponent<ParticleSystem>().Stop();
+        }
     }
 }

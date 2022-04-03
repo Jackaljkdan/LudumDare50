@@ -5878,6 +5878,7 @@ GameObject:
   - component: {fileID: 495578967}
   - component: {fileID: 495578968}
   - component: {fileID: 495578963}
+  - component: {fileID: 495578964}
   m_Layer: 0
   m_Name: Piss
   m_TagString: Untagged
@@ -5981,6 +5982,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &495578964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495578962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 495578968}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!4 &495578967
 Transform:
   m_ObjectHideFlags: 0
@@ -6617,11 +6636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff29a2c62d41d714c83d5d6c54f19bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piss: {fileID: 495578968}
   sky: {fileID: 1780558460}
   introSpawner: {fileID: 1353157624}
   scenicSpawner: {fileID: 478092853}
-  timer: {fileID: 2025687062}
   introClip: {fileID: 8300000, guid: 6ebb9a4fdc96f5c46be21ff2d92adb3d, type: 3}
   skipInEditor: 1
 --- !u!43 &600870923
@@ -16262,6 +16279,50 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1485639923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485639924}
+  - component: {fileID: 1485639925}
+  m_Layer: 0
+  m_Name: GameEnder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1485639924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485639923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2001584304}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1485639925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485639923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae65080f8a92ed408da3d6e25c2e9c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endgameClip: {fileID: 8300000, guid: c63eb9854e9048947bfa999a6e38fa49, type: 3}
 --- !u!43 &1497542259
 Mesh:
   m_ObjectHideFlags: 0
@@ -23937,6 +23998,7 @@ Transform:
   - {fileID: 31555145}
   - {fileID: 1960302062}
   - {fileID: 576903814}
+  - {fileID: 1485639924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24119,6 +24181,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2025687059}
+--- !u!114 &2025687063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025687056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 2025687062}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!43 &2089618255
 Mesh:
   m_ObjectHideFlags: 0
