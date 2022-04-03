@@ -18,6 +18,8 @@ namespace Inevitable
 
         public float minSecondsBetweenSpawns = 5;
 
+        public int maxSpawnedTogether = 4;
+
         #endregion
 
         [Inject]
@@ -39,11 +41,16 @@ namespace Inevitable
 
         public void Spawn()
         {
-            Man man = Instantiate(manPrefab);
-            diContainer.InjectGameObject(man.gameObject);
+            int count = UnityEngine.Random.Range(1, maxSpawnedTogether + 1);
 
-            man.transform.position = spawnAnchor.position;
-            man.transform.forward = spawnAnchor.forward;
+            for (int i = 0; i < count; i++)
+            {
+                Man man = Instantiate(manPrefab);
+                diContainer.InjectGameObject(man.gameObject);
+
+                man.transform.position = spawnAnchor.position;
+                man.transform.forward = spawnAnchor.forward;
+            }
 
             lastSpawnTime = Time.time;
         }
