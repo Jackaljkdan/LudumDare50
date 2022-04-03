@@ -16,6 +16,9 @@ namespace Inevitable
 
         public float burnSeconds = 5;
 
+        public Transform ashAnchor;
+        public Transform ashPrefab;
+
         public UnityEvent onStartBurning = new UnityEvent();
         public UnityEvent onBurnDown = new UnityEvent();
 
@@ -72,6 +75,14 @@ namespace Inevitable
         {
             IsBurntDown = true;
             emission.rateOverTime = maxEmissionRate * 1.5f;
+
+            if (ashPrefab != null && ashAnchor != null)
+            {
+                Transform ash = Instantiate(ashPrefab);
+                ash.position = ashAnchor.position;
+                ash.localScale = Vector3.zero;
+                ash.DOScale(new Vector3(1, 2, 1), 0.5f).SetDelay(0.25f);
+            }
 
             model.DOScale(0, 0.5f).onComplete += () =>
             {
