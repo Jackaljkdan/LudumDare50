@@ -40,6 +40,7 @@ namespace Inevitable
         public float flameIntensityBumpPerSecond = 0.3f;
 
         public AudioClip startClip;
+        public AudioClip reliefClip;
 
         public AudioSource loopSource;
 
@@ -71,6 +72,7 @@ namespace Inevitable
         private void Start()
         {
             sounds.PlayOneShot(startClip);
+            Invoke(nameof(PlayRelief), 0.75f);
             float targetVolume = loopSource.volume;
             loopSource.volume = 0;
             loopSource.Play();
@@ -78,6 +80,11 @@ namespace Inevitable
 
             if (body.TryGetComponent(out ColliderStayEvent stay))
                 stay.onCollisionStay.AddListener(OnCollision);
+        }
+
+        private void PlayRelief()
+        {
+            sounds.PlayOneShot(reliefClip);
         }
 
         private void OnEnable()
