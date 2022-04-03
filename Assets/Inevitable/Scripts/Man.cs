@@ -23,6 +23,8 @@ namespace Inevitable
 
         public float destroyObjectSqrDistanceThreshold = 100 * 100;
 
+        public float destroySecondsAfterDeath = 30;
+
         [Header("Runtime")]
 
         [SerializeField]
@@ -66,9 +68,15 @@ namespace Inevitable
             }
             else
             {
-                Destroy(this);
+                enabled = false;
                 tr.DORotate(Quaternion.LookRotation(Vector3.down, tr.TransformDirection(Vector3.forward)).eulerAngles, 0.25f);
+                Invoke(nameof(Destroy), destroySecondsAfterDeath);
             }
+        }
+
+        private void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

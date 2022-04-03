@@ -16,10 +16,14 @@ namespace Inevitable
 
         public Man manPrefab;
 
+        public float minSecondsBetweenSpawns = 5;
+
         #endregion
 
         [Inject]
         private DiContainer diContainer = null;
+
+        private float lastSpawnTime;
 
         private void Start()
         {
@@ -29,11 +33,19 @@ namespace Inevitable
 
         private void OnHit()
         {
+            if (Time.time - lastSpawnTime > minSecondsBetweenSpawns)
+                Spawn();
+        }
+
+        public void Spawn()
+        {
             Man man = Instantiate(manPrefab);
             diContainer.InjectGameObject(man.gameObject);
 
             man.transform.position = spawnAnchor.position;
             man.transform.forward = spawnAnchor.forward;
+
+            lastSpawnTime = Time.time;
         }
     }
 }
