@@ -14,6 +14,8 @@ namespace Inevitable
 
         public Flammable target;
 
+        public UnityEvent onHit = new UnityEvent();
+
         private void Reset()
         {
             target = GetComponentInParent<Flammable>();
@@ -24,7 +26,10 @@ namespace Inevitable
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Fireball"))
+            {
                 target.StartBurning();
+                onHit.Invoke();
+            }
         }
     }
 }

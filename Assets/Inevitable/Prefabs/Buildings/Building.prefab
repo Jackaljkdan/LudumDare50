@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3739679235593352014}
   - component: {fileID: 993544209400342944}
+  - component: {fileID: 3970461336409802888}
   - component: {fileID: 8206056842370855392}
   m_Layer: 0
   m_Name: Building
@@ -28,8 +29,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7651076687509901570}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,6 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af5d49e0b7a13644ad9b38d3662bfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onBurntDown:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3970461336409802888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3739679235593352015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 512dbd51172b64c418c2ff2bc35b0b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAnchor: {fileID: 0}
+  manPrefab: {fileID: 5151718315000603474, guid: 88c74d2c94b52404996ce140fe310c96, type: 3}
 --- !u!114 &8206056842370855392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,48 +80,3 @@ MonoBehaviour:
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
---- !u!1 &7278280629058660042
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7651076687509901570}
-  - component: {fileID: 836618778787824706}
-  m_Layer: 6
-  m_Name: PissHitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7651076687509901570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278280629058660042}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.21, z: 0.91}
-  m_LocalScale: {x: 8, y: 4.6, z: 3}
-  m_Children: []
-  m_Father: {fileID: 3739679235593352014}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &836618778787824706
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278280629058660042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.22
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
