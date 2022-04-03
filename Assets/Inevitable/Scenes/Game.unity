@@ -1627,7 +1627,7 @@ Transform:
   m_GameObject: {fileID: 143063316}
   m_LocalRotation: {x: -0.04229857, y: -0, z: 1.16415294e-10, w: 0.99910504}
   m_LocalPosition: {x: 0, y: -9.049, z: 8.989}
-  m_LocalScale: {x: 0.5, y: 1.8000002, z: 0.5}
+  m_LocalScale: {x: 2, y: 1.8000002, z: 1}
   m_Children: []
   m_Father: {fileID: 1099093595}
   m_RootOrder: 1
@@ -4460,7 +4460,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh460156
+  m_Name: pb_Mesh20488
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5861,7 +5861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &495578967
 Transform:
   m_ObjectHideFlags: 0
@@ -6500,6 +6500,7 @@ MonoBehaviour:
   sky: {fileID: 1780558460}
   introSky: {fileID: 1780558460}
   introClip: {fileID: 8300000, guid: 6ebb9a4fdc96f5c46be21ff2d92adb3d, type: 3}
+  skipInEditor: 1
 --- !u!43 &600870923
 Mesh:
   m_ObjectHideFlags: 0
