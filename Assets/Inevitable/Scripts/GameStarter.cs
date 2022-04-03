@@ -23,6 +23,8 @@ namespace Inevitable
 
         public AudioClip introClip;
 
+        public bool skipInEditor = true;
+
         #endregion
 
         [Inject(Id = "music")]
@@ -58,46 +60,55 @@ namespace Inevitable
 
         private IEnumerator GameStartCoroutine()
         {
-            introSky.SetActive(true);
+            if (!skipInEditor)
+            {
+                introSky.SetActive(true);
 
-            yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(1);
 
-            sounds.PlayOneShot(introClip);
+                sounds.PlayOneShot(introClip);
 
-            yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.5f);
 
-            subtitles.text = string.Empty;
-            yield return subtitlesGroup.DOFade(1, 0.5f).WaitForCompletion();
+                subtitles.text = string.Empty;
+                yield return subtitlesGroup.DOFade(1, 0.5f).WaitForCompletion();
 
-            yield return subtitles.DOText("Oh no! Your Evil rival God is attacking our village! He's casting a Firestorm on us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
-            yield return new WaitForSeconds(2);
+                yield return subtitles.DOText("Oh no! Your Evil rival God is attacking our village! He's casting a Firestorm on us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
+                yield return new WaitForSeconds(2);
 
-            subtitles.text = string.Empty;
-            yield return subtitles.DOText("Please, we pray you All Mighty, use your Divine Extinguesher and save us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
-            yield return new WaitForSeconds(2);
+                subtitles.text = string.Empty;
+                yield return subtitles.DOText("Please, we pray you All Mighty, use your Divine Extinguesher and save us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
+                yield return new WaitForSeconds(2);
 
-            subtitles.text = string.Empty;
-            yield return subtitles.DOText("*finishes smoking*", duration: 1).SetEase(Ease.Linear).WaitForCompletion();
-            yield return new WaitForSeconds(2);
+                subtitles.text = string.Empty;
+                yield return subtitles.DOText("*finishes smoking*", duration: 1).SetEase(Ease.Linear).WaitForCompletion();
+                yield return new WaitForSeconds(2);
 
-            subtitles.text = string.Empty;
-            yield return subtitles.DOText("Well, I don't seem to have my Divine Extinguisher at hand...", duration: 4).SetEase(Ease.Linear).WaitForCompletion();
-            yield return new WaitForSeconds(2);
+                subtitles.text = string.Empty;
+                yield return subtitles.DOText("Well, I don't seem to have my Divine Extinguisher at hand...", duration: 4).SetEase(Ease.Linear).WaitForCompletion();
+                yield return new WaitForSeconds(2);
 
-            subtitles.text = string.Empty;
-            yield return subtitles.DOText("But yes, in the end I can feel some Divine Rain that needs to be let out, if you know what i mean...", duration: 9).SetEase(Ease.Linear).WaitForCompletion();
+                subtitles.text = string.Empty;
+                yield return subtitles.DOText("But yes, in the end I can feel some Divine Rain that needs to be let out, if you know what i mean...", duration: 9).SetEase(Ease.Linear).WaitForCompletion();
+            }
 
             rotationInput.enabled = true;
             sky.SetActive(true);
 
-            yield return new WaitForSeconds(2);
-            subtitles.text = string.Empty;
+            if (!skipInEditor)
+            {
+                yield return new WaitForSeconds(2);
+                subtitles.text = string.Empty;
+            }
 
             piss.gameObject.SetActive(true);
             music.Play();
 
-            subtitlesGroup.DOFade(0, 0.5f);
-            yield return new WaitForSeconds(2);
+            if (!skipInEditor)
+            {
+                subtitlesGroup.DOFade(0, 0.5f);
+                yield return new WaitForSeconds(2);
+            }
 
             Destroy(gameObject);
         }
