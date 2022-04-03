@@ -103,7 +103,7 @@ namespace Inevitable
 
             lastCommentTime = Time.time + clip.length;
 
-            music.DOFade(0.25f, 0.5f);
+            music.DOFade(0.2f, 0.5f);
 
             sounds.PlayOneShot(clip);
 

@@ -71,9 +71,10 @@ namespace Inevitable
         private void Start()
         {
             sounds.PlayOneShot(startClip);
+            float targetVolume = loopSource.volume;
             loopSource.volume = 0;
             loopSource.Play();
-            loopSource.DOFade(1, 1.75f).SetDelay(2);
+            loopSource.DOFade(targetVolume, 1.75f).SetDelay(2);
 
             if (body.TryGetComponent(out ColliderStayEvent stay))
                 stay.onCollisionStay.AddListener(OnCollision);
