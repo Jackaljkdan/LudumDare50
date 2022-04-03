@@ -95,7 +95,7 @@ namespace Inevitable
                 yield return new WaitForSeconds(2);
 
                 subtitles.text = string.Empty;
-                yield return subtitles.DOText("Please, we pray you All Mighty, use your Divine Extinguesher and save us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
+                yield return subtitles.DOText("Please, we pray you All Mighty, use your Divine Extinguisher and save us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
                 yield return new WaitForSeconds(2);
 
                 subtitles.text = string.Empty;
