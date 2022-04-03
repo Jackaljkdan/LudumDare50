@@ -56,11 +56,11 @@ namespace Inevitable.UI
             subtitles.text = "Mash the left mouse button to fill your bladder!";
             subtitlesGroup.DOFade(1, 0.5f);
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(10);
 
             subtitlesGroup.DOFade(0, 0.5f);
 
-            float clipLeft = clip.length - 6;
+            float clipLeft = clip.length - 10;
             if (clipLeft > 0)
                 yield return new WaitForSeconds(clipLeft);
 
