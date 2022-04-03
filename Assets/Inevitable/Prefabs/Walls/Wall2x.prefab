@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 2421991042644848817}
-  burnSeconds: 5
+  burnSeconds: 8
   onStartBurning:
     m_PersistentCalls:
       m_Calls: []

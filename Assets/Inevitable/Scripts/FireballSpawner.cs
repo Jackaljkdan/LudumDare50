@@ -41,17 +41,21 @@ namespace Inevitable
 
         private void SpawnAndSchedule()
         {
-            Spawn();
-            ScheduleSpawn();
+            if (Spawn())
+                ScheduleSpawn();
+            else
+                gameObject.SetActive(false);
         }
 
-        private void Spawn()
+        private bool Spawn()
         {
             Fireball fireball = Instantiate(fireballPrefab);
             fireball.transform.position = transform.position;
 
-            int randomIndex = UnityEngine.Random.Range(0, targets.Count);
-            var target = targets[randomIndex];
+            Flammable target = FindTarget();
+
+            if (target == null)
+                return false;
 
             Vector3 targetPosition = target.transform.position;
             float noiseX = UnityEngine.Random.Range(-targetNoise, targetNoise);
@@ -60,6 +64,35 @@ namespace Inevitable
             targetPosition.y += noiseY;
 
             fireball.target = targetPosition;
+
+            return true;
+        }
+
+        private Flammable FindTarget()
+        {
+            Building building = null;
+
+            while (targets.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, targets.Count);
+                building = targets[randomIndex];
+
+                if (building.IsBurntDown)
+                {
+                    Debug.Log("removing " + building.name);
+                    targets.RemoveAt(randomIndex);
+                }
+                else
+                    break;
+            }
+
+            if (building == null || building.IsBurntDown)
+                return null;
+
+            foreach (Flammable flammable in building.EnumerateFlammables())
+                return flammable;
+
+            return null;
         }
     }
 }

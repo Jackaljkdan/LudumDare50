@@ -61,7 +61,7 @@ namespace Inevitable
         [ContextMenu("Stop burning")]
         public void StopBurning()
         {
-            if (!particles.isPlaying)
+            if (!particles.isPlaying || IsBurntDown)
                 return;
 
             particles.Stop();
@@ -70,11 +70,12 @@ namespace Inevitable
         public void BurnDown()
         {
             IsBurntDown = true;
+            emission.rateOverTime = maxEmissionRate * 1.5f;
 
             model.DOScale(0, 0.5f).onComplete += () =>
             {
                 particles.Stop();
-                Invoke(nameof(Destroy), 1);
+                Invoke(nameof(Destroy), 4);
             };
 
             onBurnDown.Invoke();
