@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504fb620c16f26044be286d8d2c7ba07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  averageSpawnSeconds: 5
+  averageSpawnSeconds: 4
   finalAverageSpawnSeconds: 1
   autoSpawn: 1
-  targetNoise: 20
+  targetNoise: 10
+  finalTargetNoise: 4
   fireballPrefab: {fileID: 3533770265434796958, guid: addf49c0f898bc24c914cf59b4ff008d, type: 3}
   specificTargets: []
   dummyTarget: {fileID: 0}
