@@ -18,6 +18,8 @@ namespace Inevitable.UI
 
         #endregion
 
+        public bool IsPlayingTutorial { get; private set; }
+
         [Inject]
         private Piss piss = null;
 
@@ -47,14 +49,22 @@ namespace Inevitable.UI
 
         private IEnumerator ShowTutorialCoroutine()
         {
+            IsPlayingTutorial = true;
+
             sounds.PlayOneShot(clip);
 
             subtitles.text = "Mash the left mouse button to fill your bladder!";
             subtitlesGroup.DOFade(1, 0.5f);
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
 
             subtitlesGroup.DOFade(0, 0.5f);
+
+            float clipLeft = clip.length - 6;
+            if (clipLeft > 0)
+                yield return new WaitForSeconds(clipLeft);
+
+            IsPlayingTutorial = false;
 
             Destroy(gameObject);
         }

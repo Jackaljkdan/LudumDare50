@@ -46,6 +46,8 @@ namespace Inevitable
         [SerializeField]
         private List<LerpToTarget> particles = null;
 
+        public UnityEvent onDrink = new UnityEvent();
+
         private void Reset()
         {
             renderer = GetComponentInChildren<Renderer>();
@@ -136,7 +138,10 @@ namespace Inevitable
             }
 
             if (Input.GetMouseButtonDown(0))
+            {
                 thirstMultiplier = Mathf.Min(1, thirstMultiplier + inputThirstSecondsBump);
+                onDrink.Invoke();
+            }
         }
 
         private void LateUpdate()
