@@ -33,18 +33,18 @@ namespace Inevitable
 
         #endregion
 
-        public float DistanceThreshold
-        {
-            get => _distanceThreshold;
-            set
-            {
-                if (_distanceThreshold != value)
-                {
-                    _distanceThreshold = value;
-                    cachedSibilings = null;
-                }
-            }
-        }
+        //public float DistanceThreshold
+        //{
+        //    get => _distanceThreshold;
+        //    set
+        //    {
+        //        if (_distanceThreshold != value)
+        //        {
+        //            _distanceThreshold = value;
+        //            cachedSibilings = null;
+        //        }
+        //    }
+        //}
 
         public bool CanSpread
         {
@@ -87,7 +87,7 @@ namespace Inevitable
             {
                 cachedSibilings = new List<Flammable>();
 
-                float sqrDistanceThreshold = DistanceThreshold * DistanceThreshold;
+                //float sqrDistanceThreshold = DistanceThreshold * DistanceThreshold;
                 Transform tr = transform;
 
                 foreach (Transform child in transform.parent)
@@ -98,10 +98,10 @@ namespace Inevitable
                     if (!(child.TryGetComponent(out Flammable sibiling)))
                         continue;
 
-                    float sqrDistance = (tr.position - child.position).sqrMagnitude;
+                    //float sqrDistance = (tr.position - child.position).sqrMagnitude;
 
-                    if (sqrDistance <= sqrDistanceThreshold)
-                        cachedSibilings.Add(sibiling);
+                    //if (sqrDistance <= sqrDistanceThreshold)
+                    cachedSibilings.Add(sibiling);
                 }
 
                 ListUtils.ShuffleInPlace(cachedSibilings);
@@ -109,6 +109,9 @@ namespace Inevitable
 
             foreach (var sibiling in cachedSibilings)
             {
+                if (sibiling == null)
+                    continue;
+
                 if (!sibiling.CanStartBurning)
                     continue;
 
