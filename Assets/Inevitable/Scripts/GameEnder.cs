@@ -1,5 +1,7 @@
 using DG.Tweening;
 using Inevitable.UI;
+using JK.Actuators;
+using JK.Actuators.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace Inevitable
         #region Inspector
 
         public AudioClip endgameClip;
+
+        public bool skipInEditor = true;
 
         #endregion
 
@@ -35,8 +39,16 @@ namespace Inevitable
         [Inject(Id = "music")]
         private AudioSource music = null;
 
+        [Inject(Id = "endgame")]
+        private CanvasGroup endgame = null;
+
+        [Inject]
+        private InertialTransformRotationActuator rotation = null;
+
         private void Start()
         {
+            endgame.gameObject.SetActive(false);
+
             foreach (var building in buildings)
                 building.onBurntDown.AddListener(OnBuildingBurnt);
         }
@@ -63,7 +75,22 @@ namespace Inevitable
             music.DOFade(0, 1);
             sounds.PlayOneShot(endgameClip);
 
-            yield return new WaitForSeconds(endgameClip.length);
+            if (!Application.isEditor || !skipInEditor)
+                yield return new WaitForSeconds(5);
+
+            endgame.alpha = 0;
+            endgame.gameObject.SetActive(true);
+            endgame.DOFade(1, 1);
+
+            rotation.Speed = 5;
+
+            Cursor.lockState = CursorLockMode.None;
+
+            if (!Application.isEditor || !skipInEditor)
+                yield return new WaitForSeconds(endgameClip.length - 5);
+
+            if (Application.isEditor && skipInEditor)
+                yield return new WaitForSeconds(endgameClip.length);
 
             music.DOFade(1, 1);
 
