@@ -68,7 +68,7 @@ namespace Inevitable
 
         private IEnumerator GameStartCoroutine()
         {
-            if (!skipInEditor)
+            if (!Application.isEditor || !skipInEditor)
             {
                 scenicSpawner.gameObject.SetActive(true);
 
@@ -115,13 +115,13 @@ namespace Inevitable
             if (timer.TryGetComponent(out CanvasGroup group))
                 group.DOFade(1, 0.5f);
 
-            if (!skipInEditor)
+            if (!Application.isEditor || !skipInEditor)
                 yield return new WaitForSeconds(1);
 
             piss.gameObject.SetActive(true);
             music.Play();
 
-            if (!skipInEditor)
+            if (!Application.isEditor || !skipInEditor)
             {
                 subtitlesGroup.DOFade(0, 0.5f);
                 yield return new WaitForSeconds(2);
