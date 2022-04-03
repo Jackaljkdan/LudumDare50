@@ -10,7 +10,7 @@ namespace Inevitable
     {
         #region Inspector fields
 
-        
+        public float secondsOverDifficultyIncrease = 60 * 5;
 
         #endregion
 
@@ -19,6 +19,7 @@ namespace Inevitable
             SignalBusInstaller.Install(Container);
 
             Container.DeclareSignal<FlammableStoppedBurningSignal>().OptionalSubscriber();
+            Container.BindInstance<float>(secondsOverDifficultyIncrease).WithId("difficulty.seconds").AsSingle();
         }
     }
 

@@ -35,9 +35,12 @@ namespace Inevitable
 
         public float thirstSeconds = 10;
 
+        public float finalThirstSeconds = 1f;
+
         public float inputThirstSecondsBump = 0.2f;
 
-        public float flameIntensityBumpPerSecond = 0.3f;
+        public float flameIntensityBumpPerSecond = 2;
+        public float finalIntensityBumpPerSecond = 1;
 
         public AudioClip startClip;
         public AudioClip reliefClip;
@@ -69,6 +72,9 @@ namespace Inevitable
         [InjectOptional(Id = "piss")]
         private Slider pissSlider = null;
 
+        [Inject(Id = "difficulty.seconds")]
+        private float secondsOverDifficultyIncrease = 0;
+
         private void Start()
         {
             sounds.PlayOneShot(startClip);
@@ -80,6 +86,20 @@ namespace Inevitable
 
             if (body.TryGetComponent(out ColliderStayEvent stay))
                 stay.onCollisionStay.AddListener(OnCollision);
+
+            DOTween.To(
+                () => thirstSeconds,
+                val => thirstSeconds = val,
+                finalThirstSeconds,
+                secondsOverDifficultyIncrease
+            ).SetEase(Ease.Linear);
+
+            DOTween.To(
+                () => flameIntensityBumpPerSecond,
+                val => flameIntensityBumpPerSecond = val,
+                finalIntensityBumpPerSecond,
+                secondsOverDifficultyIncrease
+            ).SetEase(Ease.Linear);
         }
 
         private void PlayRelief()

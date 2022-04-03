@@ -1,9 +1,11 @@
+using DG.Tweening;
 using JK.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Inevitable
 {
@@ -17,6 +19,8 @@ namespace Inevitable
         public float _distanceThreshold = 1;
 
         public float secondsBetweenSpreads = 2f;
+
+        public float finalSecondsBetweenSpreads = 0.5f;
 
         [SerializeField]
         private Flammable flammable = null;
@@ -57,9 +61,19 @@ namespace Inevitable
 
         private List<Flammable> cachedSibilings;
 
+        [Inject(Id = "difficulty.seconds")]
+        private float secondsOverDifficultyIncrease = 0;
+
         private void Start()
         {
             flammable.onBurnDown.AddListener(OnBurnDown);
+
+            DOTween.To(
+                () => secondsBetweenSpreads,
+                val => secondsBetweenSpreads = val,
+                finalSecondsBetweenSpreads,
+                secondsOverDifficultyIncrease
+            ).SetEase(Ease.Linear);
         }
 
         private void OnBurnDown()

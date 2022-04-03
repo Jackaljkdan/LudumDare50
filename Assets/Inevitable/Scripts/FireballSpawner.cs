@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JK.Utils;
 using System;
 using System.Collections;
@@ -15,9 +16,14 @@ namespace Inevitable
 
         public float averageSpawnSeconds = 5;
 
-        public bool autoSpawn = true;
+        public float finalAverageSpawnSeconds = 1f;
+
+        [SerializeField]
+        private bool autoSpawn = true;
 
         public float targetNoise = 10;
+
+        public float finalTargetNoise = 5;
 
         public Fireball fireballPrefab;
 
@@ -29,6 +35,29 @@ namespace Inevitable
 
         [Inject(Id = "targets")]
         private List<Building> commonTargets = null;
+
+        [Inject(Id = "difficulty.seconds")]
+        private float secondsOverDifficultyIncrease = 0;
+
+        private void Start()
+        {
+            if (autoSpawn)
+            {
+                DOTween.To(
+                    () => averageSpawnSeconds,
+                    val => averageSpawnSeconds = val,
+                    finalAverageSpawnSeconds,
+                    secondsOverDifficultyIncrease
+                ).SetEase(Ease.Linear);
+
+                DOTween.To(
+                    () => targetNoise,
+                    val => targetNoise = val,
+                    finalTargetNoise,
+                    secondsOverDifficultyIncrease
+                ).SetEase(Ease.Linear);
+            }
+        }
 
         private void OnEnable()
         {
