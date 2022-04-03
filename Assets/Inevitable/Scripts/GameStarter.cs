@@ -34,19 +34,24 @@ namespace Inevitable
         [Inject(Id = "subtitles")]
         private Text subtitles = null;
 
+        [Inject(Id = "subtitles")]
+        private CanvasGroup subtitlesGroup = null;
+
         [Inject]
         private RotationActuatorInputBehaviour rotationInput = null;
 
         private void Start()
         {
             rotationInput.enabled = false;
-            subtitles.text = string.Empty;
+            subtitlesGroup.alpha = 0;
         }
 
         private void Update()
         {
             if (!UnityEngine.Input.anyKeyDown)
                 return;
+
+            enabled = false;
 
             StartCoroutine(GameStartCoroutine());
         }
@@ -59,7 +64,10 @@ namespace Inevitable
 
             sounds.PlayOneShot(introClip);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
+
+            subtitles.text = string.Empty;
+            yield return subtitlesGroup.DOFade(1, 0.5f).WaitForCompletion();
 
             yield return subtitles.DOText("Oh no! Your Evil rival God is attacking our village! He's casting a Firestorm on us!", duration: 7).SetEase(Ease.Linear).WaitForCompletion();
             yield return new WaitForSeconds(2);
@@ -88,6 +96,7 @@ namespace Inevitable
             piss.gameObject.SetActive(true);
             music.Play();
 
+            subtitlesGroup.DOFade(0, 0.5f);
             yield return new WaitForSeconds(2);
 
             Destroy(gameObject);
