@@ -14,7 +14,7 @@ namespace Inevitable.UI
     {
         #region Inspector
 
-
+        public AudioClip clip;
 
         #endregion
 
@@ -26,6 +26,9 @@ namespace Inevitable.UI
 
         [Inject(Id = "subtitles")]
         private Text subtitles = null;
+
+        [Inject(Id = "sounds")]
+        private AudioSource sounds = null;
 
         private void Start()
         {
@@ -44,6 +47,8 @@ namespace Inevitable.UI
 
         private IEnumerator ShowTutorialCoroutine()
         {
+            sounds.PlayOneShot(clip);
+
             subtitles.text = "Mash the left mouse button to fill your bladder!";
             subtitlesGroup.DOFade(1, 0.5f);
 
