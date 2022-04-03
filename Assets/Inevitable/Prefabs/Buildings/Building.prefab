@@ -62,6 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAnchor: {fileID: 0}
   manPrefab: {fileID: 5151718315000603474, guid: 88c74d2c94b52404996ce140fe310c96, type: 3}
+  minSecondsBetweenSpawns: 2
 --- !u!114 &8206056842370855392
 MonoBehaviour:
   m_ObjectHideFlags: 0
