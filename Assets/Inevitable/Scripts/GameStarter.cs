@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Inevitable.UI;
 using JK.Actuators.Input;
 using System;
 using System.Collections;
@@ -21,6 +22,8 @@ namespace Inevitable
 
         public FireballSpawner introSpawner;
         public FireballSpawner scenicSpawner;
+
+        public Timer timer;
 
         public AudioClip introClip;
 
@@ -47,6 +50,8 @@ namespace Inevitable
         {
             rotationInput.enabled = false;
             subtitlesGroup.alpha = 0;
+            if (timer.TryGetComponent(out CanvasGroup group))
+                group.alpha = 0;
         }
 
         private void Update()
@@ -104,12 +109,12 @@ namespace Inevitable
 
             rotationInput.enabled = true;
             sky.SetActive(true);
+            timer.StartTimer();
+            if (timer.TryGetComponent(out CanvasGroup group))
+                group.DOFade(1, 0.5f);
 
             if (!skipInEditor)
-            {
-                yield return new WaitForSeconds(2);
-                subtitles.text = string.Empty;
-            }
+                yield return new WaitForSeconds(1);
 
             piss.gameObject.SetActive(true);
             music.Play();
