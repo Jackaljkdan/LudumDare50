@@ -19,7 +19,8 @@ namespace Inevitable
 
         public GameObject sky;
 
-        public GameObject introSky;
+        public FireballSpawner introSpawner;
+        public FireballSpawner scenicSpawner;
 
         public AudioClip introClip;
 
@@ -62,9 +63,12 @@ namespace Inevitable
         {
             if (!skipInEditor)
             {
-                introSky.SetActive(true);
+                scenicSpawner.gameObject.SetActive(true);
 
-                yield return new WaitForSeconds(1);
+                introSpawner.targetNoise = 0;
+                introSpawner.Spawn();
+
+                yield return new WaitForSeconds(2);
 
                 sounds.PlayOneShot(introClip);
 
@@ -89,7 +93,13 @@ namespace Inevitable
                 yield return new WaitForSeconds(2);
 
                 subtitles.text = string.Empty;
-                yield return subtitles.DOText("But yes, in the end I can feel some Divine Rain that needs to be let out, if you know what i mean...", duration: 9).SetEase(Ease.Linear).WaitForCompletion();
+                subtitles.DOText("But yes, in the end I can feel some Divine Rain that needs to be let out, if you know what i mean...", duration: 9).SetEase(Ease.Linear).WaitForCompletion();
+                yield return new WaitForSeconds(6);
+
+                introSpawner.Spawn();
+                Destroy(introSpawner.gameObject);
+
+                yield return new WaitForSeconds(3);
             }
 
             rotationInput.enabled = true;

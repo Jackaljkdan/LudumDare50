@@ -15,18 +15,25 @@ namespace Inevitable
 
         public float averageSpawnSeconds = 5;
 
+        public bool autoSpawn = true;
+
         public float targetNoise = 10;
 
         public Fireball fireballPrefab;
 
+        public List<Building> specificTargets = new List<Building>();
+
+        public Transform dummyTarget;
+
         #endregion
 
         [Inject(Id = "targets")]
-        private List<Building> targets = null;
+        private List<Building> commonTargets = null;
 
         private void OnEnable()
         {
-            ScheduleSpawn();
+            if (autoSpawn)
+                ScheduleSpawn();
         }
 
         private void OnDisable()
@@ -47,17 +54,24 @@ namespace Inevitable
                 gameObject.SetActive(false);
         }
 
-        private bool Spawn()
+        public bool Spawn()
         {
             Fireball fireball = Instantiate(fireballPrefab);
             fireball.transform.position = transform.position;
 
-            Flammable target = FindTarget();
+            Transform targetTransform = dummyTarget;
 
-            if (target == null)
-                return false;
+            if (targetTransform == null)
+            {
+                Flammable target = FindTarget();
 
-            Vector3 targetPosition = target.transform.position;
+                if (target == null)
+                    return false;
+
+                targetTransform = target.transform;
+            }
+
+            Vector3 targetPosition = targetTransform.position;
             float noiseX = UnityEngine.Random.Range(-targetNoise, targetNoise);
             float noiseY = UnityEngine.Random.Range(-targetNoise, targetNoise);
             targetPosition.x += noiseX;
@@ -71,6 +85,8 @@ namespace Inevitable
         private Flammable FindTarget()
         {
             Building building = null;
+
+            List<Building> targets = specificTargets.Count > 0 ? specificTargets : commonTargets;
 
             while (targets.Count > 0)
             {
