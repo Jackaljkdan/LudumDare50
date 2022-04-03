@@ -165,7 +165,7 @@ namespace Inevitable
             }
 
             float actualThirstMultiplier = 1;
-            thirstMultiplier -= Time.deltaTime / thirstSeconds;
+            thirstMultiplier = Mathf.Max(0, thirstMultiplier - Time.deltaTime / thirstSeconds);
 
             if (pissSlider != null)
                 pissSlider.value = thirstMultiplier;
