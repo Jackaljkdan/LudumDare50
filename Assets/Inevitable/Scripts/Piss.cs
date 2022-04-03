@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JK.Actuators.Input;
 using JK.World;
 using System;
@@ -31,6 +32,10 @@ namespace Inevitable
 
         public float flameIntensityBumpPerSecond = 0.3f;
 
+        public AudioClip startClip;
+
+        public AudioSource loopSource;
+
         [SerializeField]
         private List<LerpToTarget> particles = null;
 
@@ -48,8 +53,16 @@ namespace Inevitable
         //[Inject]
         //private RotationActuatorInputBehaviour rotationInput = null;
 
+        [Inject(Id = "sounds")]
+        private AudioSource sounds = null;
+
         private void Start()
         {
+            sounds.PlayOneShot(startClip);
+            loopSource.volume = 0;
+            loopSource.Play();
+            loopSource.DOFade(1, 1.75f).SetDelay(2);
+
             if (body.TryGetComponent(out ColliderStayEvent stay))
                 stay.onCollisionStay.AddListener(OnCollision);
         }
