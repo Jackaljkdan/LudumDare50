@@ -1379,6 +1379,7 @@ MonoBehaviour:
   minSeconds: 2
   maxSeconds: 100
   destroyObjectSqrDistanceThreshold: 10000
+  destroySecondsAfterDeath: 240
   angle: 0
   speed: 0
   seconds: 0
