@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Inevitable
 {
@@ -42,6 +43,9 @@ namespace Inevitable
 
         private ParticleSystem.EmissionModule emission;
 
+        [Inject]
+        private SignalBus signalBus = null;
+
         private void Start()
         {
             maxEmissionRate = particles.emission.rateOverTime.constant;
@@ -67,6 +71,8 @@ namespace Inevitable
         {
             if (!particles.isPlaying || IsBurntDown)
                 return;
+
+            signalBus.Fire(new FlammableStoppedBurningSignal() { flammable = this });
 
             particles.Stop();
         }

@@ -15,11 +15,15 @@ namespace Inevitable
 
         public ThirstTutorial tutorial;
 
+        public GodComments godComments;
+
         public AudioClip clip;
 
         public float secondsBetweenSounds = 10f;
 
         #endregion
+
+        public bool IsPlaying { get; private set; }
 
         [Inject]
         private Piss piss = null;
@@ -39,14 +43,25 @@ namespace Inevitable
             if (tutorial != null && tutorial.IsPlayingTutorial)
                 return;
 
-            if (Time.time > lastSoundTime + clip.length)
+            if (godComments.IsCommenting)
+                return;
+
+            if (Time.time > lastSoundTime)
                 PlaySound();
         }
 
         public void PlaySound()
         {
             sounds.PlayOneShot(clip);
-            lastSoundTime = Time.time;
+            lastSoundTime = Time.time + clip.length;
+
+            IsPlaying = true;
+            Invoke(nameof(StopPlaying), clip.length);
+        }
+
+        private void StopPlaying()
+        {
+            IsPlaying = false;
         }
     }
 }

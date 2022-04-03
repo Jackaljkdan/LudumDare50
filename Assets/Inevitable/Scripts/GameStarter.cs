@@ -23,6 +23,8 @@ namespace Inevitable
 
         public AudioClip introClip;
 
+        public GodComments godComments;
+
         public bool skipInEditor = true;
 
         #endregion
@@ -47,6 +49,11 @@ namespace Inevitable
 
         [Inject]
         private RotationActuatorInputBehaviour rotationInput = null;
+
+        private void Awake()
+        {
+            godComments.enabled = false;
+        }
 
         private void Start()
         {
@@ -126,6 +133,8 @@ namespace Inevitable
                 subtitlesGroup.DOFade(0, 0.5f);
                 yield return new WaitForSeconds(2);
             }
+
+            godComments.enabled = true;
 
             Destroy(gameObject);
         }
