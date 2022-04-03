@@ -95,11 +95,13 @@ namespace Inevitable
 
                 if (building.IsBurntDown)
                 {
-                    Debug.Log("removing " + building.name);
+                    //Debug.Log("removing " + building.name);
                     targets.RemoveAt(randomIndex);
                 }
                 else
+                {
                     break;
+                }
             }
 
             if (building == null || building.IsBurntDown)
