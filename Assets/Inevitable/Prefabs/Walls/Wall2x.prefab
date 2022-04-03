@@ -397,6 +397,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   normalizedBurningIntensity: 0
+  model: {fileID: 7169761184409949933}
 --- !u!114 &3611709953384570671
 MonoBehaviour:
   m_ObjectHideFlags: 0

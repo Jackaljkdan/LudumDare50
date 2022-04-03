@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,19 +16,23 @@ namespace Inevitable
 
         public float burnSeconds = 5;
 
+
         public UnityEvent onStartBurning = new UnityEvent();
         public UnityEvent onBurnDown = new UnityEvent();
 
         [Header("Runtime")]
         public float normalizedBurningIntensity = 0;
 
+        [Header("Internals")]
+        public Transform model = null;
+
         #endregion
 
         public bool IsBurning => particles.isPlaying;
 
-        public bool IsBurnedDown { get; private set; }
+        public bool IsBurntDown { get; private set; }
 
-        public bool CanStartBurning => !IsBurnedDown && !IsBurning;
+        public bool CanStartBurning => !IsBurntDown && !IsBurning;
 
         private float maxEmissionRate;
 
@@ -41,7 +46,7 @@ namespace Inevitable
         [ContextMenu("Start burning")]
         public void StartBurning()
         {
-            if (particles.isPlaying || IsBurnedDown)
+            if (particles.isPlaying || IsBurntDown)
                 return;
 
             emission = particles.emission;
@@ -62,9 +67,22 @@ namespace Inevitable
             particles.Stop();
         }
 
+        public void BurnDown()
+        {
+            IsBurntDown = true;
+
+            model.DOScale(0, 0.5f).onComplete += () =>
+            {
+                particles.Stop();
+                Invoke(nameof(Destroy), 1);
+            };
+
+            onBurnDown.Invoke();
+        }
+
         private void Update()
         {
-            if (!particles.isPlaying)
+            if (!particles.isPlaying || IsBurntDown)
                 return;
 
             if (normalizedBurningIntensity <= 0)
@@ -84,11 +102,12 @@ namespace Inevitable
             emission.rateOverTime = normalizedBurningIntensity * maxEmissionRate;
 
             if (normalizedBurningIntensity == 1)
-            {
-                IsBurnedDown = true;
-                StopBurning();
-                onBurnDown.Invoke();
-            }
+                BurnDown();
+        }
+
+        private void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
