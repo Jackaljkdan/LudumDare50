@@ -160,6 +160,7 @@ namespace Inevitable
         {
             enabled = false;
             body.DOScaleZ(0, 1);
+            loopSource.DOFade(0, 1);
 
             foreach (var particle in particles)
                 particle.GetComponent<ParticleSystem>().Stop();
