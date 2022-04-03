@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Inevitable
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Rigidbody))]
     public class Fireball : MonoBehaviour
     {
         #region Inspector
@@ -17,6 +17,8 @@ namespace Inevitable
         public float speed = 1;
 
         public Transform explosionPrefab;
+
+        public List<AudioClip> boomClips;
 
         #endregion
 
@@ -29,9 +31,25 @@ namespace Inevitable
 
         private void OnCollisionEnter(Collision collision)
         {
-            Destroy(gameObject);
             Transform explosion = Instantiate(explosionPrefab);
             explosion.position = transform.position;
+
+            int randomIndex = UnityEngine.Random.Range(0, boomClips.Count);
+            AudioClip randomClip = boomClips[randomIndex];
+            GetComponent<AudioSource>().PlayOneShot(randomClip);
+
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<Collider>());
+
+            foreach (Transform child in transform)
+                child.gameObject.SetActive(false);
+
+            Invoke(nameof(Destroy), randomClip.length + 1);
+        }
+
+        private void Destroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
