@@ -19,6 +19,8 @@ namespace Inevitable
             SignalBusInstaller.Install(Container);
 
             Container.DeclareSignal<FlammableStoppedBurningSignal>().OptionalSubscriber();
+            Container.DeclareSignal<EndgameSignal>().OptionalSubscriber();
+
             Container.BindInstance<float>(secondsOverDifficultyIncrease).WithId("difficulty.seconds").AsSingle();
         }
     }
@@ -26,5 +28,10 @@ namespace Inevitable
     public class FlammableStoppedBurningSignal
     {
         public Flammable flammable;
+    }
+
+    public class EndgameSignal
+    {
+
     }
 }

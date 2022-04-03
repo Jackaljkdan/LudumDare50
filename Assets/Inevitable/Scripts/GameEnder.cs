@@ -45,6 +45,9 @@ namespace Inevitable
         [Inject]
         private InertialTransformRotationActuator rotation = null;
 
+        [Inject]
+        private SignalBus signalBus = null;
+
         private void Start()
         {
             endgame.gameObject.SetActive(false);
@@ -69,6 +72,8 @@ namespace Inevitable
 
         private IEnumerator EndGameCoroutine()
         {
+            signalBus.Fire<EndgameSignal>();
+
             piss.EndFlow();
             timer.EndTimer();
 

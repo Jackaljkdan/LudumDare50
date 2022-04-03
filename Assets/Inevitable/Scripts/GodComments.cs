@@ -50,6 +50,7 @@ namespace Inevitable
                 building.onBurntDown.AddListener(OnBurnt);
 
             signalBus.Subscribe<FlammableStoppedBurningSignal>(OnStopBurning);
+            signalBus.Subscribe<EndgameSignal>(OnEndGame);
 
             ListUtils.ShuffleInPlace(burnClips);
             ListUtils.ShuffleInPlace(savedClips);
@@ -67,8 +68,16 @@ namespace Inevitable
                 Comment(positive: false);
         }
 
+        private void OnEndGame()
+        {
+            enabled = false;
+        }
+
         public bool CanComment(bool positive)
         {
+            if (!enabled)
+                return false;
+
             if (IsCommenting)
                 return false;
 
@@ -113,7 +122,8 @@ namespace Inevitable
 
         private void StopCommenting()
         {
-            music.DOFade(1, 0.5f);
+            if (enabled)
+                music.DOFade(1, 0.5f);
 
             IsCommenting = false;
         }
