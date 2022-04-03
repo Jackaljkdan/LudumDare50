@@ -36,7 +36,10 @@ namespace Inevitable
 
             int randomIndex = UnityEngine.Random.Range(0, boomClips.Count);
             AudioClip randomClip = boomClips[randomIndex];
-            GetComponent<AudioSource>().PlayOneShot(randomClip);
+            
+            var source = GetComponent<AudioSource>();
+            source.Stop();
+            source.PlayOneShot(randomClip);
 
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<Collider>());
