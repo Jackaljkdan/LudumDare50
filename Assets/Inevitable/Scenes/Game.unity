@@ -19207,7 +19207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780558461}
   m_Layer: 0
-  m_Name: Sky
+  m_Name: FireballSpawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
